@@ -6,28 +6,28 @@ concurrency:
 on:
   push:
     branches:
-    - main
+      - main
     paths:
-    - "bakehouse_analytics/**"
-    - ".github/workflows/prod_deployment.yml"
+      - "bakehouse_analytics/**"
+      - ".github/workflows/prod_deployment.yml"
 
 jobs:
   deploy:
-  name: Validar y desplegar
-  runs-on: ubuntu-latest
-  defaults:
-    run:
-    working-directory: bakehouse_analytics
-env:
-  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_PROD }}
-  DATABRICKS_BUNDLE_ENV: prod
-steps:
-  - uses: actions/checkout@v4
+    name: Validar y desplegar
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bakehouse_analytics
+    env:
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_PROD }}
+      DATABRICKS_BUNDLE_ENV: prod
+    steps:
+      - uses: actions/checkout@v4
 
-  - uses: databricks/setup-cli@main
-  
-  - name: Validar bundle
-    run: databricks bundle validate
-  
-  - name: Desplegar bundle
-    run: databricks bundle deploy
+      - uses: databricks/setup-cli@main
+      
+      - name: Validar bundle
+        run: databricks bundle validate
+      
+      - name: Desplegar bundle
+        run: databricks bundle deploy
