@@ -13,6 +13,8 @@ variables:
     description: The catalog to use
   schema:
     description: The schema to use
+  warehouse_id:
+    description: SQL warehouse que ejecuta las consultas del dashboard
 
 targets:
   dev:
@@ -27,6 +29,7 @@ targets:
     variables:
       catalog: bakehouse_analytics_dev
       schema: rnd
+      warehouse_id: d14b4d02a7954539
   prod:
     mode: production
     workspace:
@@ -36,6 +39,7 @@ targets:
     variables:
       catalog: bakehouse_analytics_prod
       schema: rnd
+      warehouse_id: cd2406f92a3b6578
     permissions:
       - user_name: lsb.davidbernal@gmail.com
         level: CAN_MANAGE
